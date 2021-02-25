@@ -1,0 +1,49 @@
+<div class="container">
+	<div class="row mt-5">
+		<form #userForm="ngForm" (ngSubmit)="userForm.form.valid && onSubmit(userForm)" novalidate>
+			<input type="hidden" class="form-control" name="id" id="id" aria-describedby="firstname" [(ngModel)]="userObj.id">
+			<div class="mb-3">
+				<label for="firstname" class="form-label">First Name</label>
+				<input type="text" class="form-control" name="firstname" #firstname="ngModel" [(ngModel)]="userObj.firstname" [ngClass]="{ 'is-invalid': userForm.submitted && firstname.invalid }" required>
+				
+			  </div>
+			  <div class="mb-3">
+				<label for="lastname" class="form-label">Last Name</label>
+				<input type="text" class="form-control" name="lastname" #lastname="ngModel" [(ngModel)]="userObj.lastname" [ngClass]="{ 'is-invalid': userForm.submitted && lastname.invalid }" required>
+			  </div>
+			  <div class="mb-3">
+				<label for="email" class="form-label">Email address</label>
+				<input type="text" class="form-control" name="email" #email="ngModel" [(ngModel)]="userObj.email" [ngClass]="{ 'is-invalid': userForm.submitted && email.invalid }" required email />
+			  </div>
+			  <div class="mb-3">
+				<label for="mobileNumber" class="form-label">Mobile Number</label>
+				<input type="text" class="form-control" name="mobileNumber" #mobileNumber="ngModel" [(ngModel)]="userObj.mobileNumber" [ngClass]="{ 'is-invalid': userForm.submitted && mobileNumber.invalid }" required />
+			  </div>
+			  <button class="btn btn-primary" *ngIf="!isEdit">Submit</button>
+			  <button class="btn btn-primary" *ngIf="isEdit">Update</button>
+		</form>
+		<br>
+		<table class="table">
+		  <thead>
+			<tr>
+			  <th scope="col">First Name</th>
+			  <th scope="col">Last Name</th>
+			  <th scope="col">Email</th>
+			  <th scope="col">Mobile Number</th>
+			  <th scope="col">Edit</th>
+			  <th scope="col">Delete</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<tr *ngFor="let user of allUser">
+			  <td>{{user.firstname}}</td>
+			  <td>{{user.lastname}}</td>
+			  <td>{{user.email}}</td>
+			  <td>{{user.mobileNumber}}</td>
+			  <td><button class="btn btn-warning" (click)="editUser(user)">Edit</button></td>
+			  <td><button class="btn btn-danger" (click)="deleteUser(user)">Delete</button></td>
+			</tr>
+		  </tbody>
+		</table>
+	</div>
+</div>
