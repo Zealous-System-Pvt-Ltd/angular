@@ -19,7 +19,7 @@ Our backend application server is a JSON server application that relies upon som
 
     ```
     cd server
-npm install
+    npm install
     ```
 
   (This will install the dependencies declared in the server/package.json file)
